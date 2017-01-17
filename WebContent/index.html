@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html ng-app="invoice" class="with-statusbar-overlay">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="stylesheet" href="css/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="css/framework7.ios.min.css">
+<link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+
+<script src="js/framework7.min.js"></script>
+<script src="js/service/invoiceScript.js"></script>
+
+
+<title>InvoiceClient</title>
+</head>
+<body>
+<div class="statusbar-overlay"></div>
+<div class="panel-overlay"></div>
+	<div class="views">
+		<div class="view view-main">
+			<div class="pages">
+				<div data-page="home" class="page navbar-fixed">
+					<div class="navbar">
+						<div class="navbar-inner">
+							<div class="left"></div>
+							<div class="center">Registration</div>
+							<div class="right"></div>
+						</div>
+					</div>
+					<div class="page-content">
+					<form action="register.action" method="post" enctype="application/x-www-form-urlencoded" id="form-login" accept-charset="UTF-8">
+						<div class="list-block">
+							<ul>
+								<li>
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ion-android-contact"></i>
+										</div>
+										<div class="item-inner">
+											<div class="item-title label">First Name</div>
+											<div class="item-input">
+												<input type="text" name="firstName" placeholder="First Name">
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media"><i class="ion-ios-person-outline"></i></div>
+										<div class="item-inner">
+											<div class="item-title label">Last Name</div>
+											<div class="item-input">
+												<input type="text" name="lastName" placeholder="Last Name">
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ion-ios-email-outline"></i>
+										</div>
+										<div class="item-inner">
+											<div class="item-title label">Email</div>
+											<div class="item-input">
+												<input type="email" name="email" placeholder="E-mail">
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ion-ios-locked-outline"></i>
+										</div>
+										<div class="item-inner">
+											<div class="item-title label">Password</div>
+											<div class="item-input">
+												<input type="password" name="password" placeholder="Password">
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media">
+											<i class="icon ion-ios-telephone-outline"></i>
+										</div>
+									<div class="item-inner">
+										<div class="item-title label">Phone</div>
+											<div class="item-input">
+												<input type="tel" name="phoneNo" placeholder="Phone Number">
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<a href="#" data-open-in="popup" class="item-link smart-select">
+										<select name="countries">
+											<option value="1" selected>Canada</option>
+											<option value="2">USA</option>
+											<option value="3">Australia</option>
+										</select>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="ion-ios-location-outline"></i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title label">Region</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								
+								<li>
+									<a href="#" data-open-in="popup"
+										class="item-link smart-select">
+										<select name="industry">
+											<option value="1">Electrical</option>
+											<option value="2">Contracting</option>
+											<option value="3">Plumbing</option>
+											<option value="4">Mechanical</option>
+										</select>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="ion-ios-home-outline"></i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title label">Industry</div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="list-block">
+							<ul>
+								<li><a href="estimate.html" class="external" class="item-link list-button">Register</a></li>
+							</ul>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/framework7.min.js"></script>
+      <script>
+         // here initialize the app
+          var myApp = new Framework7({
+         animateNavBackIcon:true
+          });
+
+         // If your using custom DOM library, then save it to $$ variable
+         var $$ = Dom7;
+
+         // Add the view
+         var mainView = myApp.addView('.view-main', {
+         // enable the dynamic navbar for this view
+         dynamicNavbar: true
+         });
+         var mainView = myApp.addView('.view-main');
+         //mainView.router.loadPage("viewPage/estimate.html");
+         $$(document).on('pageInit', function (e) {
+        	  var page = e.detail.page;
+        	  switch(page.name){
+        	  case 'index':
+
+        	    $(function(){
+        	      $('#form-login').on('submit', function(e){
+        	        e.preventDefault();
+
+        	        myApp.showPreloader();
+
+        	        var form_url = $(this).attr('action');
+        	        var form_data = $(this).serialize();
+
+        	        var form_ajax = $.ajax({
+        	          url: form_url,
+        	          type: 'POST',
+        	          dataType: 'json',
+        	          data: form_data
+        	        });
+
+        	        form_ajax.done(function(response){              
+        	          if(response.result === 'success'){
+        	            mainView.router.loadPage({url:'viewPage/estimate.html', ignoreCache:true, reload:true});
+        	            mainView.router.refreshPage();
+        	          }else{
+        	            myApp.alert('Sus datos de accesos son incorrectos, intente nuevamente.', _APP_TITLE);
+        	          }
+        	        });
+
+        	        form_ajax.fail(function() {
+        	          myApp.alert('Error al intentar iniciar sesión', _APP_TITLE);
+        	        });
+
+        	        form_ajax.always(function() {
+        	          myApp.hidePreloader();
+        	        });
+        	      });
+        	    });
+        	    break;
+        	  }
+        	});
+      </script>
+</body>
+</html>
