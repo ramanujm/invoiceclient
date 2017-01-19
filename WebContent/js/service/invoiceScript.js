@@ -1,5 +1,5 @@
 // here initialize the app
-var _APP_TITLE = 'Invoice';
+var APP_TITLE = 'Invoice';
 var myApp = new Framework7({
 	animateNavBackIcon : true
 });
@@ -21,16 +21,20 @@ $('.form-from-data').on('click',function(e) {
 
 			var form_url = $(this).attr('action');
 			var form_data = myApp.formToData('#form-register');
-
+			console.log("form_data ==> " , form_data);
 			var form_ajax = $.ajax({
-				url : form_url,
-				type : 'POST',
-				dataType : 'json',
-				data : form_data
+				headers: { 
+			'Accept': 'application/json',
+			'Content-Type': 'application/json' 
+			},
+				'url' : 'http://localhost:8080/public/register',
+				'type' : 'POST',
+				'dataType' : 'json',
+				'data' : JSON.stringify(form_data)
 			});
 
 			form_ajax.done(function(response) {
-				if (response.result === 'success') {
+				if (response.result === 'Success') {
 					mainView.router.loadPage({
 						url : 'viewPage/estimate.html',
 						ignoreCache : true,
@@ -38,12 +42,12 @@ $('.form-from-data').on('click',function(e) {
 					});
 					mainView.router.refreshPage();
 				} else {
-					myApp.alert('Your access data is incorrect, please try again.',	_APP_TITLE);
+					myApp.alert('Your access data is incorrect, please try again.',APP_TITLE);
 				}
 			});
 
 			form_ajax.fail(function() {
-				myApp.alert('Error trying to register to the system.',_APP_TITLE);
+				myApp.alert('Error trying to register to the system.',APP_TITLE);
 			});
 
 			form_ajax.always(function() {
