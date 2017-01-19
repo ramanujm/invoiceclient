@@ -1,12 +1,84 @@
 <!DOCTYPE html>
-<html class="with-statusbar-overlay">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<title>Estimate</title>
-</head>
-<body>
-
-</body>
+<html ng-app="invoice" class="with-statusbar-overlay">
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <title>Estimate</title>
+		<link rel="stylesheet" href="css/ionicons/css/ionicons.min.css">
+		<link rel="stylesheet" href="css/framework7.ios.min.css">
+		<link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+   </head>
+   <body>
+      <div class="views tabs toolbar-fixed">
+         <div id="estimateTab" class="view tab active">
+            <div class="pages">
+               <div data-page="estimate" class="page">
+               <a href="#" class="floating-button"><i class="icon icon-plus"></i></a>
+                  <div class="page-content">
+                     <div class="content-block">
+                        <div style="align:center; padding:25% 10% 10% 10%">Prepare Professional estimate and send to your clients to win more jobs.</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="clientsTab" class="view tab">
+            <div class="pages">
+               <div data-page="clients" class="page">
+                  <div class="page-content">
+                     <div class="content-block">
+                        <p>This is view 2</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="invoiceTab" class="view tab">
+            <div class="pages">
+               <div data-page="invoice" class="page">
+                  <div class="page-content">
+                     <div class="content-block">
+                        <p>This is view 3</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="settingsTab" class="view tab">
+            <div class="pages">
+               <div data-page="settings" class="page">
+                  <div class="page-content">
+                     <div class="content-block">
+                        <p>This is view 4</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="toolbar tabbar">
+            <div class="toolbar-inner">
+            	<a href="#estimateTab" class="tab-link active">
+					<i class="ion-ios-calculator" size="40"></i>
+					<span class="tabbar-label">Estimate</span>
+				</a>
+            	<a href="#invoiceTab" class="tab-link">
+					<i class="ion-social-usd"></i>
+					<span class="tabbar-label">Invoice</span>
+				</a>
+				<a href="#clientsTab" class="tab-link">
+					<i class="ion-ios-people"></i>
+					<span class="tabbar-label">Clients</span>
+				</a>
+            	<a href="#settingsTab" class="tab-link">
+					<i class="ion-ios-gear"></i>
+					<span class="tabbar-label">Settings</span>
+				</a>
+            </div>
+         </div>
+      </div>
+      <script src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/framework7.min.js"></script>
+	<script type="text/javascript" src="js/service/invoiceScript.js"></script>
+   </body>
 </html>

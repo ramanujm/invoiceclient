@@ -43,7 +43,7 @@ $('.form-from-data').on('click',function(e) {
 			});
 
 			form_ajax.fail(function() {
-				myApp.alert('Error trying to register to the system.');
+				myApp.alert('Error trying to register to the system.',_APP_TITLE);
 			});
 
 			form_ajax.always(function() {
